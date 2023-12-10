@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Google fonts -->
+
+    <!-- Ubuntu -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <!-- Arabic IBM -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&display=swap" rel="stylesheet"> -->
+    <!-- Roboto -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> -->
+
+
+    <!-- Font awesome icons -->
+    <link rel="stylesheet" href="CSS/all.min.css"></link>
+
+
+    <!-- Styling files  -->
+    <link rel="stylesheet" href="CSS/style.css"></link>
+
+    <style>
+        html {
+            font-family: "Ubuntu";
+        }
+        :root {
+            --lg-padding: 20px;
+            --md-padding: 10px;
+            --sm-padding: 7px;
+            --light-clr: hsl(0, 0%, 100%);
+            --black-clr: hsla(0, 0%, 7%, 0.821);
+            --main-clr: hsl(200, 18%, 46%);
+        }
+
+        button {
+            padding: 5px 20px;
+            background: #8080801a;
+
+            outline: none;
+            border: 2px solid #E8F5E9;
+            border-radius: 8px;
+
+            font-weight: bold;
+            text-transform: capitalize;
+            cursor: pointer;
+        }
+
+        /* Groups */
+        #table, .next__prayer, .calender .date {
+            padding: var(--lg-padding);
+        }
+        
+        .wrapper {
+            min-height: 100vh;
+            display: grid;
+            place-content: center;
+            justify-items: center;
+
+            padding: var(--lg-padding);
+        }
+        /* Search Box */
+        .search_box {
+            display: grid;
+            gap: var(--lg-padding);
+        }
+
+        .search_box > div {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 62px;
+        }
+
+        .search_box input {
+            border: 2px solid #acb7fc;
+            background-color: #cccccc2b;
+            padding: var(--sm-padding);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .search_box .results {
+            margin: var(--md-padding);
+            box-shadow: 0 0 3px 4px hsl(0deg 7.53% 82.91% / 22%);
+            background: white;
+        }
+
+        .search_box .results li {
+            list-style: none;
+            cursor: pointer;
+            padding: var(--sm-padding);
+        }
+
+        .search_box .results li:hover {
+            color: #acb7fc;
+        }
+
+        /* Location */
+
+        .location {
+            margin: var(--lg-padding);
+            color: #673AB7;
+        }
+
+        /* Calender */
+
+        .calender .date {
+            padding: var(--lg-padding);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--lg-padding);
+        }
+
+        .calender .days {
+            display: flex;
+            gap: var(--lg-padding);
+            overflow-x: scroll;
+            width: 450px;
+        }
+
+        .calender .days::-webkit-scrollbar {
+            display: none;
+        }
+
+        .calender .days .day {
+            padding: var(--md-padding);
+
+            flex-shrink: 0;
+            display: grid;
+            gap: 10px;
+
+            border: 1px solid #E8F5E9;
+            border-radius: 8px;
+            text-align: center;
+
+            background-color: #E8EAF6;
+            cursor: pointer;
+        }
+
+        .calender .days .day.today {
+            background-color: #c7cffd;
+        }
+
+        /* Next Prayer */
+        .next__preyer {
+            padding: var(--md-padding);
+        }
+
+        .next__preyer p {
+            color: gray;
+        }
+
+        .next__prayer p .content {
+            color: #4DB6AC;
+            font-weight: bold;
+        }
+
+        /* Table */
+        #table {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: var(--lg-padding);
+            
+            box-shadow: 0 0 3px 10px hsl(0deg 7.53% 82.91% / 5%);
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .prayer {
+            width: 130px;
+            height: 130px;
+            overflow: hidden;
+
+            display: grid;
+            gap: 20px;
+            grid-template-rows: auto 1fr;
+
+            border: 1px solid #0096881f;
+            border-radius: 22px;
+        }
+
+        .prayer h2 {
+            background: linear-gradient(to right, #EDE7F6, #E8F5E9);
+            padding: var(--sm-padding);
+        }
+
+        .prayer h3 {}
+
+
+    </style>
+
+</head>
+<body>
+
+    
+    <div class="wrapper">
+        <div class="search_box">
+            <input 
+                type="text" 
+                name="City" 
+                id="searchBar" 
+                placeholder="City, Country"
+            />
+            <div>
+                <ul class="results">
+                    <!-- <li 
+                        class="city" 
+                        data-city="Minya" 
+                        data-country="Egypt">
+                        Minia Egypt
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="location"></h2>
+        </div>
+
+        <div class="today_date">
+            <h2 class="gregorian"></h2>
+            <h2 class="hijri"></h2>
+        </div>
+
+        <div class="calender">
+            <div class="date">
+                <button id="prev"><i class="fa-regular fa-circle-left"></i> prev</button>
+                <h1 class="month__year"></h1>
+                <button id="next">next <i class="fa-regular fa-circle-right"></i></button>
+            </div>
+            <div class="days">
+                <!-- <div class="day">
+                    <span class="day_num">7</span>
+                    <span class="day_name">Fr</span>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="next__prayer">
+            <p>Next Pryer : 
+                <span class="content">
+                    <span class="prayer__name"></span>
+                    <span id="hours"></span>H
+                    <span id="mins"></span>M
+                </span>
+            </p>
+        </div>
+
+        <div id="table">
+            
+        </div>
+    </div>
+
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="script.js" type=""></script>
+</body>
+</html>
