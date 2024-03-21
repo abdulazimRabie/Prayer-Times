@@ -1,6 +1,6 @@
 let nav = 0;
 const search_bar = document.getElementById("searchBar");
-const search_result = document.querySelector(".results")
+const search_result = document.querySelector(".results");
 
 const calender = document.querySelector(".month__year");
 const prev = document.getElementById("prev");
